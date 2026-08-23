@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    padding:20px;
+}
+
+/* HEADER */
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    color:#00e6e6;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.2);
+}
+
+/* SEARCH */
+form{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input[type="text"]{
+    padding:10px;
+    width:250px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+}
+
+button{
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    background:#00e6e6;
+    color:black;
+    cursor:pointer;
+    margin-left:5px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:rgba(255,255,255,0.1);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+th,td{
+    padding:12px;
+    text-align:center;
+}
+
+th{
+    background:#00e6e6;
+    color:black;
+}
+
+/* ACTION BUTTONS */
+a{
+    text-decoration:none;
+    padding:6px 10px;
+    border-radius:6px;
+    font-size:14px;
+    margin:2px;
+    display:inline-block;
+}
+
+a[href*="edit"]{
+    background:#4caf50;
+    color:white;
+}
+
+a[href*="delete"]{
+    background:#f44336;
+    color:white;
+}
+
+a:hover{
+    opacity:0.8;
+}
+
+.logout-btn{
+    background:red;
+    color:white;
+    padding:8px 15px;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.logout-btn:hover{
+    background:darkred;
+}
+
+</style>
+</head>
+
+<body>
+<header style="display:flex; justify-content:space-between; align-items:center;">
+
+    <h1>Admin Dashboard</h1>
+
+    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+
+</header>
+
+
+<!-- CARDS -->
+<div class="cards">
+    <div class="card">Total Users<br><b>{{ total_users }}</b></div>
+    <div class="card">Total Servers<br><b>{{ total_servers }}</b></div>
+    <div class="card">Online<br><b>{{ online_servers }}</b></div>
+    <div class="card">Offline<br><b>{{ offline_servers }}</b></div>
+    <div class="card">Critical<br><b>{{ critical_servers }}</b></div>
+</div>
+
+<!-- SEARCH -->
+<form method="GET">
+    <input type="text" name="search" placeholder="Search Server">
+    <button type="submit">Search</button>
+</form>
+
+<!-- TABLE -->
+<table>
+<tr>
+    <th>User</th>
+    <th>Server</th>
+    <th>IP</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for server in servers %}
+<tr>
+    <td>{{ server.user.username }}</td>
+    <td>{{ server.server_name }}</td>
+    <td>{{ server.ip_address }}</td>
+    <td>{{ server.status }}</td>
+    <td>
+        <a href="{% url 'edit_server' server.id %}">Edit</a>
+        <a href="{% url 'delete_server' server.id %}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>
+

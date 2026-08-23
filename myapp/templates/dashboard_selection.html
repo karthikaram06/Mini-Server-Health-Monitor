@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Selection</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
+
+.container{
+    width:800px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+h1{
+    margin-bottom:10px;
+    font-size:35px;
+}
+
+p{
+    margin-bottom:35px;
+    color:#ddd;
+}
+
+.cards{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.card{
+    flex:1;
+    background:rgba(255,255,255,0.1);
+    border-radius:15px;
+    padding:30px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,0.18);
+}
+
+.icon{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#00b4d8;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0096c7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Select Dashboard</h1>
+
+<p>Choose the dashboard you want to access.</p>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">👨‍💼</div>
+<h2>Admin Dashboard</h2>
+<p>Manage servers, add new servers, update server details, monitor server health and view reports.</p>
+
+<a href="{% url 'admin_dashboard' %}">
+<button>Open Admin Dashboard</button>
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">👤</div>
+
+<h2>User Dashboard</h2>
+
+<p>View server status, CPU usage, memory usage, disk usage and overall server health.</p>
+
+<a href="{% url 'user_dashboard' %}">
+<button>Open User Dashboard</button>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

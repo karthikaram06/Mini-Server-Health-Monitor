@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Server</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+
+width:420px;
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(12px);
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0px 8px 20px rgba(0,0,0,0.4);
+
+color:white;
+
+}
+
+h2{
+
+text-align:center;
+
+margin-bottom:20px;
+
+}
+
+label{
+
+display:block;
+
+margin-top:12px;
+
+}
+
+input,select{
+
+width:100%;
+
+padding:10px;
+
+margin-top:5px;
+
+border:none;
+
+border-radius:8px;
+
+outline:none;
+
+}
+
+button{
+
+width:100%;
+
+padding:12px;
+
+margin-top:20px;
+
+background:#00b4d8;
+
+border:none;
+
+color:white;
+
+font-size:18px;
+
+border-radius:25px;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#0096c7;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🖥️ Add New Server</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+<label>Server Name</label>
+
+<input type="text" name="server_name" placeholder="Enter Server Name">
+
+<label>IP Address</label>
+
+<input type="text" name="ip_address" placeholder="192.168.1.1">
+
+<label>Operating System</label>
+
+<select name="operating_system">
+
+<option>Windows</option>
+
+<option>Linux</option>
+
+<option>Ubuntu</option>
+
+<option>MacOS</option>
+
+</select>
+
+<label>CPU Usage (%)</label>
+<input type="number" name="cpu_usage" placeholder="50">
+
+<label>RAM Usage (%)</label>
+<input type="number" name="ram_usage" placeholder="70">
+
+<label>Disk Usage (%)</label>
+<input type="number" name="disk_usage" placeholder="60">
+
+<label>Status</label>
+<select name="status">
+    <option value="Online">Online</option>
+    <option value="Offline">Offline</option>
+</select>
+
+<button>Add Server</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#1e3c72,#2a5298,#00b4d8);
+}
+
+.register-box{
+width:380px;
+padding:35px;
+background:rgba(255,255,255,0.15);
+border-radius:20px;
+backdrop-filter:blur(12px);
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+text-align:center;
+color:white;
+}
+
+.register-box h2{
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:25px;
+outline:none;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:25px;
+background:#00b4d8;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0096c7;
+}
+
+.error{
+color:yellow;
+margin-top:10px;
+}
+
+a{
+color:#fff700;
+text-decoration:none;
+}
+</style>
+
+</head>
+<body>
+
+<div class="register-box">
+
+<h2>Create Account</h2>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="POST" action="{% url 'registration' %}">
+{% csrf_token %}
+
+<input type="text" name="username" placeholder="Username" required>
+
+<input type="email" name="email" placeholder="Email" required>
+
+<input type="password" name="password" placeholder="Password" required>
+
+<input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+<button type="submit">Register</button>
+
+</form>
+
+<p style="margin-top:20px;">
+Already have an account?
+<a href="{% url 'signin' %}">Login</a>
+</p>
+
+</div>
+
+</body>
+</html>
